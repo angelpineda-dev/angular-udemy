@@ -1,0 +1,30 @@
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { GifsService } from '../services/gifs.service';
+
+@Component({
+  selector: 'app-busqueda',
+  templateUrl: './busqueda.component.html',
+  styles: [
+  ]
+})
+export class BusquedaComponent {
+
+  constructor(private gifsService: GifsService){
+
+  }
+
+  /* decorador ViewChild, podemos buscar por elementos html, por clases, o referencia local. Después del decorador va el nombre de la variable */
+
+  @ViewChild('txtBuscar') txtBuscar!:ElementRef<HTMLInputElement>;
+
+  buscar(){
+
+    const valor = this.txtBuscar.nativeElement.value;
+
+    this.gifsService.buscarGifs(valor)
+
+    this.txtBuscar.nativeElement.value = ""
+
+  }
+
+}

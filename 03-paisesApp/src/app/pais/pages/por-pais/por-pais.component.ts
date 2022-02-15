@@ -13,20 +13,29 @@ export class PorPaisComponent {
   termino:string = ''
   isError:boolean = false;
   paises : Country[] = [];
+  placeholder = "Buscar país...";
 
   constructor(private paisService:PaisService) { }
 
-  buscar(){
+  buscar( termino:string){
+
     this.isError = false;
+    this.termino = termino;
 
-    this.paisService.buscarPais(this.termino)
+    this.paisService.buscarPais(termino)
       .subscribe(resp => {
-        console.log(resp);
-        this.paises = resp
-      },(err) => {
-        this.isError = true;
-        this.paises = [];
-      })
 
+        //console.log(resp);
+        this.paises = resp
+
+      },(err) => {
+        this.paises = [];
+        console.log(err);
+        this.isError = true;
+      })
+  }
+
+  sugerencias(event:string){
+    this.isError = false;
   }
 }

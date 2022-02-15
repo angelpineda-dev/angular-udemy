@@ -2,3 +2,7 @@
   width: 50px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 }
+
+.mr-1 {
+  margin-right: 0.4rem;
+}
